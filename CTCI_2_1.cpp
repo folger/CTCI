@@ -11,6 +11,13 @@ struct node
 	node* next;
 };
 
+static void remove_node(node*& p)
+{
+	node* ptemp = p;
+	p = p->next;
+	delete ptemp;
+}
+
 static void removeduplicate1(node* head)
 {
 	std::set<node::VALUE_TYPE> has;
@@ -25,9 +32,7 @@ static void removeduplicate1(node* head)
 		}
 		else
 		{
-			node* ptemp = *pp;
-			*pp = (*pp)->next;
-			delete ptemp;
+			remove_node(*pp);
 		}
 	}
 }
@@ -42,9 +47,7 @@ static void removeduplicate2(node* head)
 		{
 			if ( (*pp)->data == pcurr->data )
 			{
-				node* ptemp = *pp;
-				*pp = (*pp)->next;
-				delete ptemp;
+				remove_node(*pp);
 			}
 			else
 			{
@@ -77,17 +80,15 @@ int main()
 		}
 	}
 
-	removeduplicate1(nullptr);
-	removeduplicate2(head);
+	removeduplicate1(head);
+	removeduplicate2(nullptr);
 
 	node* p = head;
 	while ( p )
 	{
 		std::cout << p->data << std::endl;
 
-		node* ptemp = p;
-		p = p->next;
-		delete ptemp;
+		remove_node(p);
 	}
 
 	return 0;
