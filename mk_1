@@ -1,0 +1,19 @@
+# cc = c++-mp-4.8
+cc = c++
+copt = -c -std=c++0x -Wall -Werror
+bin = CTCI_1_$(SUB)
+
+objects = $(bin).o
+
+all:$(objects)
+		$(cc) -o $(bin) $(objects)
+
+$(bin).o : $(bin).cpp
+
+%.o : %.cpp
+		$(cc) $(copt) $< -o $@
+
+.PHONY : clean
+clean:
+		rm -f $(objects)
+		rm -f $(bin)
