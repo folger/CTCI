@@ -1,7 +1,7 @@
 # cc = c++-mp-4.8
 cc = c++
 copt = -c -std=c++0x -Wall -Werror
-bin = CTCI_2_5
+bin = CTCI_2_$(SUB)
 
 objects = $(bin).o myList.o
 
