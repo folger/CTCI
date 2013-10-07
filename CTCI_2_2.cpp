@@ -30,7 +30,6 @@ node* nth_last_element(node* head, int n)
 int main()
 {
 	int data[] = {1,2,3,4,5,6,7,8,9};
-
 	myList list(data, sizeof(data)/sizeof(data[0]));
 
 	std::cout << nth_last_element(list.Head(), 2)->data << std::endl;
