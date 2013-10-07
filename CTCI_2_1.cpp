@@ -3,20 +3,7 @@
 
 #include <set>
 #include <iostream>
-
-struct node
-{
-	typedef int VALUE_TYPE;
-	VALUE_TYPE data;
-	node* next;
-};
-
-static void remove_node(node*& p)
-{
-	node* ptemp = p;
-	p = p->next;
-	delete ptemp;
-}
+#include "myList.h"
 
 static void removeduplicate1(node* head)
 {
@@ -60,36 +47,12 @@ static void removeduplicate2(node* head)
 
 int main()
 {
-	int data[] = {10, 10, 10};
+	int data[] = {10, 20, 20, 30, 40, 10, 50};
 
-	node* head = nullptr;
-	node* tail = nullptr;
-	for ( auto d : data )
-	{
-		node* p = new node;
-		p->data = d;
-		p->next = nullptr;
-		if ( tail == nullptr )
-		{
-			head = tail = p;
-		}
-		else
-		{
-			tail->next = p;
-			tail = p;
-		}
-	}
+	myList list(data, sizeof(data)/sizeof(data[0]));
 
-	removeduplicate1(head);
+	removeduplicate1(list.Head());
 	removeduplicate2(nullptr);
-
-	node* p = head;
-	while ( p )
-	{
-		std::cout << p->data << std::endl;
-
-		remove_node(p);
-	}
 
 	return 0;
 }
