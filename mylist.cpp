@@ -11,16 +11,15 @@ void remove_node(node*& p)
 void append_list(node*& pDest, node* pSource)
 {
 	node** pp = &pDest;
+	while ( *pp )
+	{
+		pp = &(*pp)->next;
+	}
 	while ( pSource )
 	{
-		node* pNew = new node;
-		*pNew = *pSource;
-		pNew->next = nullptr;
-		if ( *pp == nullptr )
-		{
-			*pp = pNew;
-		}
-
+		*pp = new node;
+		(*pp)->data = pSource->data;
+		(*pp)->next = nullptr;
 		pp = &(*pp)->next;
 
 		pSource = pSource->next;
@@ -39,21 +38,13 @@ void print_list(node* p)
 
 myList::myList(node::VALUE_TYPE* arr, int n) : head(nullptr)
 {
-	node* tail = nullptr;
+	node** pp = &head;
 	for ( int ii=0; ii<n; ++ii )
 	{
-		node* p = new node;
-		p->data = arr[ii];
-		p->next = nullptr;
-		if ( tail == nullptr )
-		{
-			head = tail = p;
-		}
-		else
-		{
-			tail->next = p;
-			tail = p;
-		}
+		*pp = new node;
+		(*pp)->data = arr[ii];
+		(*pp)->next = nullptr;
+		pp = &(*pp)->next;
 	}
 }
 

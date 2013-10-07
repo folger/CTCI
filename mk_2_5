@@ -1,0 +1,20 @@
+# cc = c++-mp-4.8
+cc = c++
+copt = -c -std=c++0x -Wall -Werror
+bin = CTCI_2_5
+
+objects = $(bin).o myList.o
+
+all:$(objects)
+		$(cc) -o $(bin) $(objects)
+
+$(bin).o : myList.h $(bin).cpp
+myList.o : myList.h myList.cpp
+
+%.o : %.cpp
+		$(cc) $(copt) $< -o $@
+
+.PHONY : clean
+clean:
+		rm -f $(objects)
+		rm -f $(bin)
