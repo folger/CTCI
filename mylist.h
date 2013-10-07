@@ -9,6 +9,8 @@ struct node
 };
 
 void remove_node(node*& p);
+void append_list(node*& pDest, node* pSource);
+void print_list(node* p);
 
 class myList
 {

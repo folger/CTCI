@@ -8,6 +8,35 @@ void remove_node(node*& p)
 	delete ptemp;
 }
 
+void append_list(node*& pDest, node* pSource)
+{
+	node** pp = &pDest;
+	while ( pSource )
+	{
+		node* pNew = new node;
+		*pNew = *pSource;
+		pNew->next = nullptr;
+		if ( *pp == nullptr )
+		{
+			*pp = pNew;
+		}
+
+		pp = &(*pp)->next;
+
+		pSource = pSource->next;
+	}
+}
+
+void print_list(node* p)
+{
+	while ( p )
+	{
+		std::cout << p->data << "->";
+		p = p->next;
+	}
+	std::cout << "NULL" << std::endl;
+}
+
 myList::myList(node::VALUE_TYPE* arr, int n) : head(nullptr)
 {
 	node* tail = nullptr;
